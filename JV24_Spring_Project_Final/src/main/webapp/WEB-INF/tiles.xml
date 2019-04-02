@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+
+<tiles-definitions>
+    
+    <definition name="base.definition" template="/WEB-INF/jsp/layout/main-layout.jsp">  
+        <put-attribute name="header" value="/WEB-INF/jsp/include/menu.jsp" />        
+        <put-attribute name="body" value="" />        
+        <put-attribute name="footer" value="/WEB-INF/jsp/include/footer.jsp" />         
+    </definition>
+    
+    <definition name="home" extends="base.definition">  
+        <put-attribute name="title" value="Home1" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/home.jsp" />  
+    </definition>
+    
+    <definition name="redirect-page" template="/WEB-INF/jsp/redirect-page.jsp"/>  
+    
+    <definition name="movie-detail" extends="base.definition">  
+        <put-attribute name="title" value="Movie Detail" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/movie-detail.jsp" />  
+    </definition>
+    
+    <definition name="book-ticket" extends="base.definition">  
+        <put-attribute name="title" value="Book Ticket" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/book-ticket.jsp" />  
+    </definition>
+    
+    <definition name="contact" extends="base.definition">  
+        <put-attribute name="title" value="Book Ticket" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/contact.jsp" />  
+    </definition>
+    
+    <definition name="reviews" extends="base.definition">  
+        <put-attribute name="title" value="Review Film" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/reviews.jsp" />  
+    </definition>
+    
+    <definition name="choose-ticket" extends="base.definition">  
+        <put-attribute name="title" value="Choose Ticket" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/choose-ticket.jsp" />  
+    </definition>
+    
+    <definition name="choose-seat" extends="base.definition">  
+        <put-attribute name="title" value="Choose Seat" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/choose-seat.jsp" />  
+    </definition>
+    
+    <definition name="showing-movie" extends="base.definition">  
+        <put-attribute name="title" value="Showing Movie" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/showing-movie.jsp" />  
+    </definition>
+    
+    <definition name="coming-movie" extends="base.definition">  
+        <put-attribute name="title" value="Coming Movie" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/coming-movie.jsp" />  
+    </definition>
+    
+    <definition name="watch-trailer" extends="base.definition">  
+        <put-attribute name="title" value="Watch Trailer" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/watch-trailer.jsp" />  
+    </definition>
+    
+    <definition name="check-out" extends="base.definition">  
+        <put-attribute name="title" value="Check out" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/check-out.jsp" />  
+    </definition>
+    
+    <definition name="login.definition" template="/WEB-INF/jsp/login/main-layout.jsp">   
+        <put-attribute name="header" value="/WEB-INF/jsp/include/menu.jsp" />       
+        <put-attribute name="login" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/include/footer.jsp" />             
+    </definition>
+    
+    <definition name="login" extends="login.definition">  
+        <put-attribute name="login" value="/WEB-INF/jsp/login/login.jsp" />  
+    </definition>
+    
+    <definition name="register.definition" template="/WEB-INF/jsp/register/main-layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/jsp/include/menu.jsp" />          
+        <put-attribute name="body" value="" /> 
+        <put-attribute name="footer" value="/WEB-INF/jsp/include/footer.jsp" />            
+    </definition>
+    
+    <definition name="register" extends="register.definition">  
+        <put-attribute name="body" value="/WEB-INF/jsp/register/register.jsp" />  
+    </definition>
+    
+    <definition name="check-info" extends="register.definition">  
+        <put-attribute name="title" value="Check Info" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/check-info.jsp" />  
+    </definition>
+    
+<!--    Admin-->
+    <definition name="admin.definition" template="/WEB-INF/jsp/admin/layout-admin/main-layout.jsp">  
+        <put-attribute name="header" value="/WEB-INF/jsp/admin/include/menuAdmin.jsp" />        
+        <put-attribute name="body" value="" />        
+        <put-attribute name="footer" value="/WEB-INF/jsp/admin/include/footerAdmin.jsp" />         
+    </definition>
+    
+    <definition name="admin/home" extends="admin.definition">  
+        <put-attribute name="title" value="Home" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/home.jsp" />  
+    </definition>
+    
+    <definition name="admin/list-ticket" extends="admin.definition">  
+        <put-attribute name="title" value="Home" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/list-ticket.jsp" />  
+    </definition>
+    
+    <definition name="admin/movie-form" extends="admin.definition">  
+        <put-attribute name="title" value="Home" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/movie-form.jsp" />  
+    </definition>
+    
+    <definition name="admin/movie-schedule" extends="admin.definition">  
+        <put-attribute name="title" value="Home" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/movie-schedule.jsp" />  
+    </definition>
+    
+    <definition name="admin/movieSchedule-form" extends="admin.definition">  
+        <put-attribute name="title" value="Home" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/movieSchedule-form.jsp" />  
+    </definition>
+    
+    <definition name="admin/result" extends="admin.definition">  
+        <put-attribute name="title" value="Home" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/result.jsp" />  
+    </definition>
+    
+    <definition name="admin/user-form" extends="admin.definition">  
+        <put-attribute name="title" value="Home" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/user-form.jsp" />  
+    </definition>
+    
+    <definition name="admin/user" extends="admin.definition">  
+        <put-attribute name="title" value="Home" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/user.jsp" />  
+    </definition>
+
+</tiles-definitions>

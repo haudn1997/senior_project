@@ -1,0 +1,36 @@
+
+
+.group-login-register {
+    margin-top: 10px;
+}
+
+.group-login-register .email {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: #37a4c5;
+}
+
+.group-login-register a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: #37a4c5;
+}
+
+.gach-doc {
+    border-right: 2px solid #7F8BA3;
+}
+
+.group-login-register a:hover {
+    color: yellow;
+    text-decoration: none;
+}
+
+.group-login-register #login {
+    margin-right: 20px;
+}
+
+.group-login-register #register {
+    margin-left: 20px;
+}
