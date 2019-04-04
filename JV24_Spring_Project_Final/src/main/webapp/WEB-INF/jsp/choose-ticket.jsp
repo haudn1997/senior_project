@@ -1,8 +1,4 @@
-<%-- 
-    Document   : choose-ticket
-    Created on : Sep 25, 2018, 10:59:14 PM
-    Author     : PC
---%>
+
 
 <%@page import="java.util.List"%>
 <%@page import="com.mycompany.jv24_spring_project_final.entities.TicketDetailEntity"%>
@@ -11,7 +7,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div class="full">
     <div class="main">
-        <div class="choose-ticket" style="margin-bottom: 50px;">
+        <div class="choose-ticket" style="margin-bottom: 50px; margin-top: 150px;">
             <div class="container">
                 <c:if test="${message!=null && message!=''}">
                     <div class="row">
@@ -157,8 +153,11 @@
 
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12">
-                        <h3 style="color: #5261ac">THÔNG TIN VỀ VÉ</h3>
-                        <p class="border"></p>
+                        <div style="margin-left: 20px;">
+                            <h3 style="color: #5261ac">THÔNG TIN VỀ VÉ</h3>
+                            <p class="border"></p>
+                        </div>
+                        
                         <div class="right-content">
                             <ul>
                                 <li>

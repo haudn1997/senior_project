@@ -6,9 +6,9 @@
 body {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 15px;
-  color: #b9b9b9;
   background-color: #e3e3e3;
 }
+
 #form-register h4 {
   color: #7ed321;
   font-size: 30px;
@@ -76,6 +76,10 @@ body {
   background-color: #7ed321;
   color: #fff;
   border-color: #64ac15;
+}
+#form-register input[type="submit"] {
+  background-color: #64ac15;
+  color: #fff;
 }
 #form-register input[type="checkbox"] {
   display: none;
@@ -180,11 +184,12 @@ select option {
 #form-register {
   max-width: 38em;
   padding: 1em 3em 2em 3em;
-  margin: 0em auto;
   background-color: #fff;
   border-radius: 4.2px;
   box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
+  margin-top: 40px;
+  margin-left: 230px;
 }
 #form-register .row {
   zoom: 1;

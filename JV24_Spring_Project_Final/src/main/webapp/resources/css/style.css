@@ -483,14 +483,6 @@ i.contact1 {
 .nbs-flexisel-nav-right {
     display:none;
 }	
-.review-slider {
-    background: #dfb636;
-    padding: 3em 0;
-}
-.video iframe {
-    width:100%;
-    min-height:480px;
-}
 .more-reviews{
     background:#fff;
     padding:3em 0;
@@ -2454,7 +2446,7 @@ a.b-home:hover{
 }
 
 .book-content .select-film {
-    margin-bottom: 50px;
+    margin-bottom: 80px;
 }
 
 #select-film
@@ -2507,20 +2499,20 @@ a.b-home:hover{
     height: 500px;
 }
 
-.book-content .part3 select {
-    background: #3bd369;
-    width: 200px;
+.book-content .part3 select, input[type="date"] {
+    background: #c9c9c9;
+    width: 180px;
     height: 40px;
-    border: 2px solid #2DBEEA;
     margin-bottom: 40px;
+    border-radius: 0px;
 }
 
-.book-content .part3 input {
-    background: #3bd369;
-    width: 200px;
+.book-content .part3 input[type="submit"]{
+    color: #ffffff;
+    background-color: #f26b38;
+    border-radius: 5px;
+    width: 100px;
     height: 40px;
-    border: 2px solid #2DBEEA;
-    margin-bottom: 40px;
 }
 
 .book-content .part3 select option {
@@ -2568,7 +2560,7 @@ a.b-home:hover{
 }
 
 .book-content .right-content {
-    margin-top: -9px;
+    margin-top: -70px;
     margin-left: -28px;
 }
 
@@ -2773,14 +2765,15 @@ a.b-home:hover{
 .name-film {
     border: 1px solid cadetblue;
     margin-top: -20px;
-    background: azure;
+    background: #37a4c5;
     text-align: center;
 }
 
 .name-film a {
     text-decoration: none;
-    color: darkblue;
+    color: white;
     text-transform: uppercase;
+    font-family: Times;
 }
 
 

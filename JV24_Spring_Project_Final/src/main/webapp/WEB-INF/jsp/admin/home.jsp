@@ -1,8 +1,4 @@
-<%-- 
-    Document   : homeAdmin
-    Created on : Sep 28, 2018, 1:05:36 PM
-    Author     : PC
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -35,15 +31,6 @@
 <div class="main-panel">
     <nav class="navbar navbar-default navbar-fixed">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Dashboard</a>
-            </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -72,33 +59,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="row">
-                    <div class="col-md-6 col-xs-5" >
-                        <form action="${pageContext.request.getContextPath()}/admin/categoryMovie" method="post" class="form-inline">
-                            <div class="form-group" style="margin-top: 20px;" >
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <label style="padding-top: 10px; padding-right: 5px;">Category:</label>
-                                    </div>
-                                    
-                                    <div class="col-sm-6">
-                                        <select name="categoryMovie.id" class="form-control">
-                                            <c:forEach items="${lstCategoryMovie}" var="c">
-                                                <c:if test="${movie.categoryMovie.id == c.id}">
-                                                    <option value="${c.id}" selected=""> ${c.name} </option>
-                                                </c:if>
-                                                <c:if test="${movie.categoryMovie.id != c.id}">
-                                                    <option value="${c.id}"> ${c.name} </option>
-                                                </c:if>
-                                            </c:forEach>
-                                        </select>
-
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <button class="btn btn-default" id="btn1" >Search</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="col-md-6 col-xs-5" >       
                     </div>
                     <div class="col-md-6 col-xs-5">
                         <div class="row">
@@ -108,14 +69,14 @@
                                         <div class="col-md-7 col-xs-6">
                                             <input type="text" name="searchText" class="form-control">
                                         </div>
-                                        <div class="col-md-4 col-xs-6">
-                                            <button class="btn btn-default" id="btn1">Search</button>
+                                        <div class="col-md-4 col-xs-6" style="margin-left: -80px;">
+                                            <button class="btn btn-default col-md-4 col-xs-6" id="btn1" style="width: 40px" ><span><i class="glyphicon glyphicon-search"></i></span> </button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="col-md-3 col-xs-3"  id="content">
-                                <button class="btn btn-success" style="margin-top: 20px;margin-bottom: 20px" onclick="location.href = '${pageContext.request.getContextPath()}/admin/add-movie'">Add Movie</button>
+                                <button class="btn btn-success" style="margin-top: 20px;margin-bottom: 20px" onclick="location.href = '${pageContext.request.getContextPath()}/admin/add-movie'">Thêm Phim</button>
                             </div>
                         </div>
                     </div>
@@ -135,17 +96,15 @@
                         <div class="table-responsive" >
                             <table class="table table-bordered" style="text-align: center">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Actor</th>
-                                    <th>Director</th>
-                                    <th>Images</th>
-                                    <th>Date Start</th>
-                                    <th>Link</th>
-                                    <th>Time </th>
-                                    <th>Country </th>
-                                    <th>Category Movie </th>
-                                    <th>Action</th>
+                                    <th style="text-align: center;">ID</th>
+                                    <th style="text-align: center;">Name</th>
+                                    <th style="text-align: center;">Actor</th>
+                                    <th style="text-align: center;">Director</th>   
+                                    <th style="text-align: center;">Date Start</th>
+                                    <th style="text-align: center;">Time </th>
+                                    <th style="text-align: center;">Country </th>
+                                    <th style="text-align: center;">Category Movie </th>
+                                    <th style="text-align: center;">Action</th>
                                 </tr>
                                 <c:if test="${lstMovie.content!= null && fun:length(lstMovie.content)>0}">
                                     <c:forEach items="${lstMovie.content }" var="u">
@@ -154,15 +113,13 @@
                                             <td>${u.name}</td>
                                             <td>${u.actor}</td>
                                             <td>${u.director}</td>
-                                            <td>${u.image}</td>
                                             <td>${u.dateStartShowing}</td>
-                                            <td>${u.link}</td>
                                             <td>${u.time}</td>
                                             <td>${u.country.name}</td>
                                             <td>${u.categoryMovie.name}</td>
                                             <td>
-                                                <button class="btn btn-danger" onclick="location.href = '${pageContext.request.getContextPath()}/admin/deleteMovie/${u.id}'"> Delete</button>
-                                                <button class="btn btn-primary" onclick="location.href = '${pageContext.request.getContextPath()}/admin/edit-movie/${u.id}'"> Edit</button>
+                                                <button class="btn btn-primary" onclick="location.href = '${pageContext.request.getContextPath()}/admin/edit-movie/${u.id}'"> Sửa</button>
+                                                <button class="btn btn-danger" onclick="location.href = '${pageContext.request.getContextPath()}/admin/deleteMovie/${u.id}'"> Xóa</button>      
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -171,7 +128,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="margin-left: 400px; margin-bottom: 20px;">
+                <div style="margin-left: 580px; margin-bottom: 20px;">
                     <ul class="pagination modal-1">
                         <c:if test="${page > 1}">
                             <li><a href="${pageContext.request.getContextPath()}/admin/?page=${page-1}" class="prev">&laquo</a></li>

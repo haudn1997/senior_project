@@ -1,8 +1,4 @@
-<%-- 
-    Document   : resultSearh
-    Created on : Oct 23, 2018, 2:29:00 PM
-    Author     : PC
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -45,15 +41,6 @@
 <div class="main-panel">
     <nav class="navbar navbar-default navbar-fixed">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Dashboard</a>
-            </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -97,11 +84,11 @@
                     <div class="table-responsive" >
                         <table class="table table-bordered" style="text-align: center">
                             <tr>
-                                <th>ID</th>
-                                <th>Movie</th>
-                                <th>Ticket Detail</th>
-                                <th>CreateAt</th>
-                                <th>Total Price</th>
+                                <th style="text-align: center;">ID</th>
+                                <th style="text-align: center;">Movie</th>
+                                <th style="text-align: center;">Ticket Detail</th>
+                                <th style="text-align: center;">CreateAt</th>
+                                <th style="text-align: center;">Total Price</th>
 
                             </tr>
                             <c:if test="${lstTicket!= null && fun:length(lstTicket)>0}">

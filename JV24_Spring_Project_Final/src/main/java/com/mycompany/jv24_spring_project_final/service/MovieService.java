@@ -2,6 +2,7 @@
 package com.mycompany.jv24_spring_project_final.service;
 
 import com.mycompany.jv24_spring_project_final.entities.CategoryMovieEntity;
+import com.mycompany.jv24_spring_project_final.entities.CategoryTicketEntity;
 import com.mycompany.jv24_spring_project_final.entities.CountryEntity;
 import com.mycompany.jv24_spring_project_final.entities.MovieEntity;
 import com.mycompany.jv24_spring_project_final.repository.CategoryMovieRepository;
@@ -49,8 +50,8 @@ public class MovieService {
         return  movieRepository.findOne(movieId);
     }
     
-    public List<MovieEntity> searchNameMovie(String searchText){
-        return movieRepository.findByNameLike("%"+searchText+"%");
+    public Page<MovieEntity> searchNameMovie(String name, PageRequest pageable) {
+        return movieRepository.findByNameContaining(name, pageable);
     }
     
     public boolean checkExistMovie(int id){
@@ -60,20 +61,6 @@ public class MovieService {
     public boolean deleteMovie(int id){
         movieRepository.delete(id);
         return this.checkExistMovie(id);
-    }
-    
-    public List<MovieEntity> categoryMovie(int id){
-        CategoryMovieEntity cate1= categoryMovieRepository.findOne(id);
-        List<MovieEntity> lstMovie= (List<MovieEntity>) movieRepository.findAll();
-        List<MovieEntity> lstMovieCate= new ArrayList<>();
-        for (MovieEntity movie : lstMovie) {
-            if(movie.getCategoryMovie().getId()==id){
-                lstMovieCate.add(movie);
-            }
-            
-        }
-        
-        return lstMovieCate;
     }
     
     public Page<MovieEntity> findAll(PageRequest pageable) {

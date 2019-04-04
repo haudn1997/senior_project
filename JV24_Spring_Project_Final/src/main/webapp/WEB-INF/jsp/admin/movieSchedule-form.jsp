@@ -1,7 +1,4 @@
 
-
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -11,15 +8,6 @@
 <div class="main-panel">
     <nav class="navbar navbar-default navbar-fixed">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Dashboard</a>
-            </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -47,26 +35,26 @@
     <div class="content">
         <div class="container-fluid">
             <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: center">
-                <h1>Register Form </h1>
+                <h1 style="color: #23527c">THÊM VÀ CẬP NHẬT LỊCH CHIẾU PHIM</h1>
             </div>
             <c:if test="${message != null && message != ''}">
                 <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: center">
                     <div class="alert alert-danger">${message}</div>
                 </div>
             </c:if>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top: 50px;">
                 <f:form action="${pageContext.request.getContextPath()}/admin/${action}" method="post" modelAttribute="movieSchdule" class="form-horizontal">
                     <c:if test="${action== 'update-movieSchedule'}">
                         <input type="text" hidden name="id" value="${movieSchedule.id}"/>
                     </c:if>
                     <div class="form-group">
-                        <label  class="col-sm-2 col-xs-4  control-lable">Date:<span style="color: red">(*)</span></label>
+                        <label  class="col-sm-2 col-xs-4  control-lable">Ngày chiếu:<span style="color: red">(*)</span></label>
                         <div class="col-xs-8 col-sm-8">
                             <input name="date"  type="date"  class="form-control" placeholder="yyyy-MM-dd" required=""  value="${movieSchedule.date}"/>                                                          <f:errors path="lastname" cssClass="fielError"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label  class="col-sm-2 col-xs-4  control-lable">Time:<span style="color: red">(*)</span></label>
+                        <label  class="col-sm-2 col-xs-4  control-lable">Thời gian chiếu:<span style="color: red">(*)</span></label>
                         <div class="col-xs-8 col-sm-8">
                             <input name="time"  type="text"  class="form-control" placeholder="HH:mm:ss" required=""  value="${movieSchedule.time}"/>                                                          <f:errors path="lastname" cssClass="fielError"/>
                         </div>
@@ -74,9 +62,10 @@
 
 
                     <div class="form-group">
-                        <label  class="col-sm-2 col-xs-4  control-lable">Movie:<span style="color: red">(*)</span> </label>
+                        <label  class="col-sm-2 col-xs-4  control-lable">Phim:<span style="color: red">(*)</span> </label>
                         <div class="col-xs-8 col-sm-8">
                             <select name="movie.id" class="form-control" required="" >
+                                <option>Chọn phim</option>
                                 <c:forEach items="${lstMovie}" var="c">
                                     <c:if test="${movieSchedule.movie.id == c.id}">
                                         <option value="${c.id}" selected=""> ${c.name} </option>
@@ -89,9 +78,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label  class="col-sm-2 col-xs-4  control-lable">Room:<span style="color: red">(*)</span> </label>
+                        <label  class="col-sm-2 col-xs-4  control-lable">Phòng:<span style="color: red">(*)</span> </label>
                         <div class="col-xs-8 col-sm-8">
                             <select name="room.id" class="form-control" required="" >
+                                <option>Chọn phòng</option>
                                 <c:forEach items="${lstRoom}" var="c">
                                     <c:if test="${movieSchedule.room.id == c.id}">
                                         <option value="${c.id}" selected=""> ${c.name} </option>
@@ -104,7 +94,7 @@
                         </div>
                     </div>
                     <div class="form-group" style="text-align: center">
-                        <input type="submit" class="btn btn-danger" value="Register"/>
+                        <input type="submit" class="btn btn-danger" value="Xong"/>
                     </div>
                 </f:form>
             </div>

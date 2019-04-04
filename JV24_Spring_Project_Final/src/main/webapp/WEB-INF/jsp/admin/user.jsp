@@ -1,8 +1,4 @@
-<%-- 
-    Document   : homeAdmin
-    Created on : Sep 28, 2018, 1:05:36 PM
-    Author     : PC
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -36,15 +32,6 @@
 <div class="main-panel">
     <nav class="navbar navbar-default navbar-fixed">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Dashboard</a>
-            </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -87,7 +74,7 @@
                                 </form>
                             </div>
                             <div class="col-md-5 col-xs-5" id="content">
-                                <button class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px; margin-left: 50px;" onclick="location.href = '${pageContext.request.getContextPath()}/admin/add-user'">Add New User</button>
+                                <button class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px; margin-left: 50px;" onclick="location.href = '${pageContext.request.getContextPath()}/admin/add-user'">Thêm Người Dùng</button>
                             </div>
                         </div>
                     </div>
@@ -106,14 +93,14 @@
                         <div class="table-responsive" >
                             <table class="table table-bordered" style="text-align: center">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Gender</th>
-                                    <th>address</th>
-                                    <th>PhoneNumber</th>
-                                    <th>Active </th>
-                                    <th>Action</th>
+                                    <th style="text-align: center;">ID</th>
+                                    <th style="text-align: center;">Name</th>
+                                    <th style="text-align: center;">Email</th>
+                                    <th style="text-align: center;">Gender</th>
+                                    <th style="text-align: center;">Address</th>
+                                    <th style="text-align: center;">PhoneNumber</th>
+                                    <th style="text-align: center;">Active </th>
+                                    <th style="text-align: center;">Action</th>
                                 </tr>
                                 <c:if test="${lstUser!= null && fun:length(lstUser)>0}">
                                     <c:forEach items="${lstUser}" var="u">
@@ -126,8 +113,8 @@
                                             <td>${u.phoneNumber}</td>
                                             <td>${u.active}</td>
                                             <td>
-                                                <button class="btn btn-danger" onclick="location.href = '${pageContext.request.getContextPath()}/admin/delete-user/${u.id}'"> Delete</button>
-                                                <button class="btn btn-primary" onclick="location.href = '${pageContext.request.getContextPath()}/admin/edit-user/${u.id}'" > Edit</button>
+                                                <button class="btn btn-primary" onclick="location.href = '${pageContext.request.getContextPath()}/admin/edit-user/${u.id}'" > Sửa</button>
+                                                <button class="btn btn-danger" onclick="location.href = '${pageContext.request.getContextPath()}/admin/delete-user/${u.id}'"> Xóa</button>
                                             </td>
                                         </tr>
                                     </c:forEach>

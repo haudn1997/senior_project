@@ -18,14 +18,14 @@
         </div>
 
         <ul class="nav">
-            <li class="active">
+            <li class="">
                 <a href="${pageContext.request.getContextPath()}/admin/home">
                     <i class="fas fa-film"></i>
                     <p>Movie</p>
                 </a>
             </li>
 
-            <li>
+            <li class="">
                 <a href="${pageContext.request.getContextPath()}/admin/user">
                     <i class="far fa-user"></i>
                     <p>User</p>
@@ -49,3 +49,10 @@
     </div>
     <div class="sidebar-background" style="background-image: url(${pageContext.request.getContextPath()}/resources/images/sidebar-5.jpg);"></div>
 </div>
+<script>
+        $(document).ready(function(){
+            $("li").click(function(){   
+                $(this).attr("class","active");
+            });            
+        });
+</script>

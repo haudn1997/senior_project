@@ -15,7 +15,8 @@
         <spring.vesion>4.3.18.RELEASE</spring.vesion>
         <jackson.core.version>2.9.6</jackson.core.version>
         <security.version>4.2.7.RELEASE</security.version>
-        <org.apache.tiles-version>3.0.7</org.apache.tiles-version>
+        <org.apache.tiles-version>3.0.7</org.apache.tiles-version>   
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>     
     </properties>
     
     <dependencies>

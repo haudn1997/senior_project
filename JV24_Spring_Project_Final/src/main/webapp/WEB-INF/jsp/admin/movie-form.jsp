@@ -64,15 +64,6 @@
 <div class="main-panel">
     <nav class="navbar navbar-default navbar-fixed">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Dashboard</a>
-            </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -96,15 +87,14 @@
         </div>
     </nav>
 
-
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: center ; padding-bottom: 50px" >
-                    <h1>ADD NEW MOVIE </h1>
+                    <h1 style="color: #23527c">THÊM VÀ CẬP NHẬT PHIM</h1>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-left: 150px;">
                 <div class="col-md-12 col-xs-12">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12">
@@ -112,24 +102,20 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-xs-6">
-                                            <div class="row">
-                                                <div class="col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <div class="input-group input-file" name="fileUpload">
                                                     <span class="input-group-btn">
-                                                        <button class="btn btn-default btn-choose" type="button">Choose</button>
+                                                        <button class="btn btn-warning btn-choose" type="button">Chọn</button>
+                                                    </span>
+                                                    <input type="text" class="form-control" placeholder='Choose a file...' style="height: 40px;">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-warning btn-reset" type="button">Hủy</button>
                                                     </span>
                                                 </div>
-                                                <div class="col-sm-6 col-xs-4">
-                                                    <input type="text" class="form-control" placeholder='Choose a file...' style="width:100%">
-                                                </div>
-                                                <div class="col-sm-3 col-xs-4">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-warning btn-reset" type="button">Reset</button>
-                                                    </span>
-                                                </div>
-                                            </div>  
+                                            </div>
                                         </div>
-                                        <div class="col-sm-6 col-xs-6" style="padding-right: 220px;">
-                                            <button type="submit" class="btn btn-primary pull-right" >Update</button>
+                                        <div class="col-sm-6 col-xs-6" style="padding-right: 280px;">
+                                            <button type="submit" class="btn btn-primary pull-right" >Cập Nhật</button>
                                         </div>
                                     </div>
 
@@ -144,72 +130,73 @@
                             <input type="text" hidden name="id" value="${movie.id}"/>
                         </c:if>
                         <div class="form-group">
-                            <label class="col-sm-2 col-xs-4 control-lable">Name:<span style="color: red">(*)</span></label>
+                            <label class="col-sm-3 col-xs-4 control-lable">Tên phim:<span style="color: red">(*)</span></label>
                             <div class="col-xs-8 col-sm-8">
-                                <input name="name" type="text" placeholder="Enter a name movie" class="form-control" value="${movie.name}" required="" />
+                                <input name="name" type="text" placeholder="Nhập tên phim" class="form-control" value="${movie.name}" required="" />
                             </div>
                         </div>
                         <c:if test="${imagesupload != null && imagesupload !=''}">
                             <div class="form-group">
-                                <label  class="col-sm-2 col-xs-4  control-lable">Images:<span style="color: red">(*)</span></label>
+                                <label  class="col-sm-3 col-xs-4  control-lable">Hình ảnh:<span style="color: red">(*)</span></label>
                                 <div class="col-xs-8 col-sm-8">
-                                    <input name="image" type="text" placeholder="update image before" class="form-control" required="" value="${imagesupload}" />
+                                    <input name="image" type="text" placeholder="Nhập hình ảnh" class="form-control" required="" value="${imagesupload}" />
                                 </div>
                             </div>
                         </c:if>
                         <c:if test="${imagesupload == null}">
                             <div class="form-group">
-                                <label  class="col-sm-2 col-xs-4  control-lable">Images:<span style="color: red">(*)</span></label>
+                                <label  class="col-sm-3 col-xs-4  control-lable">Hình ảnh:<span style="color: red">(*)</span></label>
                                 <div class="col-xs-8 col-sm-8">
-                                    <input name="image" type="text" placeholder="update image before" class="form-control" required="" value="${movie.image}" />
+                                    <input name="image" type="text" placeholder="Nhập hình ảnh" class="form-control" required="" value="${movie.image}" />
                                 </div>
                             </div>
                         </c:if>
                         <div class="form-group">
-                            <label  class="col-sm-2 col-xs-4  control-lable">Actor:<span style="color: red">(*)</span></label>
+                            <label  class="col-sm-3 col-xs-4  control-lable">Diễn viên:<span style="color: red">(*)</span></label>
                             <div class="col-xs-8 col-sm-8">
-                                <input name="actor" type="text" placeholder="Enter author" class="form-control"  value="${movie.actor}" required=""/>
+                                <input name="actor" type="text" placeholder="Nhập tên diễn viên" class="form-control"  value="${movie.actor}" required=""/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="col-sm-2 col-xs-2  control-lable">Director:<span style="color: red">(*)</span></label>
+                            <label  class="col-sm-3 col-xs-2  control-lable">Đạo diễn:<span style="color: red">(*)</span></label>
                             <div class="col-xs-8 col-sm-8">
-                                <input name="director" type="text"  class="form-control" value="${movie.director}" required=""/>
+                                <input name="director" type="text" placeholder="Nhập tên đạo diễn" class="form-control" value="${movie.director}" required=""/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="col-sm-2 col-xs-4 col-md-4 control-lable">Des:<span style="color: red">(*)</span></label>
+                            <label  class="col-sm-3 col-xs-4 col-md-4 control-lable">Mô tả:<span style="color: red">(*)</span></label>
                             <div class="col-xs-8 col-sm-8">
-                                <input name="description" type="text"  class="form-control" value="${movie.description}" required="" />
+                                <input name="description" type="text" placeholder="Nhập mô tả" class="form-control" value="${movie.description}" required="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="col-sm-2 col-xs-4  control-lable">Link:<span style="color: red">(*)</span></label>
+                            <label  class="col-sm-3 col-xs-4  control-lable">Link:<span style="color: red">(*)</span></label>
                             <div class="col-xs-8 col-sm-8">
-                                <input name="link" type="text"  class="form-control"  value="${movie.link}" required=""/>
+                                <input name="link" type="text" placeholder="Link của trailer" class="form-control"  value="${movie.link}" required=""/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="col-sm-2 col-xs-4  control-lable">DateStart:<span style="color: red">(*)</span></label>
+                            <label  class="col-sm-3 col-xs-4  control-lable">Ngày bắt đầu:<span style="color: red">(*)</span></label>
                             <div class="col-xs-8 col-sm-8">
                                 <input name="dateStartShowing" type="date" placeholder="yyyy-MM-dd"  class="form-control" required="" value="${movie.dateStartShowing}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="col-sm-2 col-xs-4  control-lable">Time:<span style="color: red">(*)</span></label>
+                            <label  class="col-sm-3 col-xs-4  control-lable">Thời lượng phim:<span style="color: red">(*)</span></label>
                             <div class="col-xs-8 col-sm-8">
                                 <input name="time" type="text" placeholder="hh:mm:ss "  class="form-control"  required=""  value="${movie.time}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="col-sm-2 col-xs-4  control-lable">Category:<span style="color: red">(*)</span></label>
+                            <label  class="col-sm-3 col-xs-4  control-lable">Loại phim:<span style="color: red">(*)</span></label>
                             <div class="col-xs-8 col-sm-5">
                                 <select name="categoryMovie.id" class="form-control">
+                                    <option>Chọn loại phim</option>
                                     <c:forEach items="${lstCategoryMovie}" var="c">
                                         <c:if test="${movie.categoryMovie.id == c.id}">
                                             <option value="${c.id}" selected=""> ${c.name} </option>
                                         </c:if>
-                                        <c:if test="${movie.categoryMovie.id != c.id}">
+                                        <c:if test="${movie.categoryMovie.id != c.id}">                                           
                                             <option value="${c.id}"> ${c.name} </option>
                                         </c:if>
                                     </c:forEach>
@@ -217,9 +204,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="col-sm-2 col-xs-4  control-lable">Country:<span style="color: red">(*)</span></label>
+                            <label  class="col-sm-3 col-xs-4  control-lable">Quốc gia:<span style="color: red">(*)</span></label>
                             <div class="col-xs-8 col-sm-5">
                                 <select name="country.id" class="form-control">
+                                    <option>Chọn quốc gia</option>
                                     <c:forEach items="${lstCountryMovie}" var="c">
                                         <c:if test="${movie.country.id == c.id}">
                                             <option value="${c.id}" selected="" > ${c.name} </option>
@@ -232,7 +220,7 @@
                             </div>
                         </div>
                         <div class="form-group" style="text-align: center; margin-top: 40px">
-                            <input type="submit" class="btn btn-danger" value="Add New"/>
+                            <input type="submit" class="btn btn-danger" value="Xong"/>
                         </div>
                     </f:form>
                 </div>

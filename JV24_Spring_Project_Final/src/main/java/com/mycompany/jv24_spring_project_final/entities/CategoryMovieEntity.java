@@ -24,6 +24,13 @@ public class CategoryMovieEntity implements Serializable{
     @OneToMany(mappedBy = "categoryMovie", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MovieEntity> movie;
 
+    public CategoryMovieEntity() {
+    }
+
+    public CategoryMovieEntity(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

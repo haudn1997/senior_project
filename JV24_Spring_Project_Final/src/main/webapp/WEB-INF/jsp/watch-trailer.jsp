@@ -1,8 +1,4 @@
-<%-- 
-    Document   : watch-trailer
-    Created on : Oct 14, 2018, 12:11:10 PM
-    Author     : PC
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

@@ -1,8 +1,4 @@
-<%-- 
-    Document   : book-ticket
-    Created on : Sep 24, 2018, 10:01:49 AM
-    Author     : PC
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -11,7 +7,7 @@
 
 <div class="full">
     <div class="main">
-        <div class="book-content">
+        <div class="book-content" style="margin-top: 150px;">
             <!---contact-->
             <div class="container">
                 <div class="row">
@@ -123,7 +119,7 @@
                                 <div class="cinema">
                                     <div class="title-cinema">
                                         <h5 class="ng-binding">Chọn Suất</h5>
-                                    </div>
+                                    </div>                         
                                     <div class="item-cinema">
                                         <div class="row">
                                             <div class="col-md-3 col-sm-3 col-xs-12">
@@ -146,8 +142,10 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12">
-                        <h3>Phim đang chiếu</h3>
-                        <p class="border"></p>
+                        <div style="margin-left: 20px;">
+                            <h3>Phim đang chiếu</h3>
+                            <p class="border select-film"></p>
+                        </div>
                         <div class="right-content">
                             <ul>
                                 <c:forEach items="${lstMovie}" var="m">

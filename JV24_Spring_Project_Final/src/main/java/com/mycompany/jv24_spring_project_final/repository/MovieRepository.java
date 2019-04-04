@@ -1,6 +1,7 @@
 
 package com.mycompany.jv24_spring_project_final.repository;
 
+import com.mycompany.jv24_spring_project_final.entities.CategoryTicketEntity;
 import com.mycompany.jv24_spring_project_final.entities.MovieEntity;
 import java.io.Serializable;
 import java.util.List;
@@ -22,6 +23,8 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Integer>{
     List<MovieEntity> findDateComing(String date);
     
     Page<MovieEntity> findByNameContaining(String name, Pageable pageable);
+    
+    Page<MovieEntity> findByCategoryMovie(CategoryTicketEntity categoryId, Pageable pageable);
     
     List<MovieEntity> findByNameLike(String searchText);
 }

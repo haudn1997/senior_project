@@ -1,4 +1,3 @@
-
 package com.mycompany.jv24_spring_project_final.controller;
 
 import com.mycompany.jv24_spring_project_final.common.PasswordUtil;
@@ -21,6 +20,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -35,20 +35,17 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
     @Autowired
     private MovieService movieService;
     @Autowired
     private UserService userService;
     @Autowired
     private TicketService ticketService;
-//
 
     @RequestMapping(value = {"/", "/home"})
     public String home(Model model, @RequestParam(value = "message", required = false) String message, @RequestParam(value = "page", defaultValue = "1", required = false) int page) {
-
-        List<MovieEntity> lstM = movieService.getMovie();
-        
-        model.addAttribute("lstMovie",movieService.findAll(new PageRequest(page - 1, 7)) );
+        model.addAttribute("lstMovie", movieService.findAll(new PageRequest(page - 1, 7)));
         model.addAttribute("lstCategoryMovie", movieService.getCategoryMovie());
         model.addAttribute("page", page);
         model.addAttribute("message", message);
@@ -89,8 +86,9 @@ public class AdminController {
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String upload(Model model, HttpServletRequest request,
             @RequestParam(value = "fileUpload", required = false) MultipartFile fileUpload, HttpSession session) {
-//        String path = "D:\\Jv24\\Spring Framework\\JV24_Spring_Project_Final\\JV24_Spring_Project_Final\\src\\main\\webapp\\resources\\images\\";
-        String path = "http://node194476-cinemaxxi.jelastic.servint.net/home/src/main/webapp/resources/images/";
+        //String path = "D:\\Jv24\\Spring Framework\\JV24_Spring_Project_Final\\JV24_Spring_Project_Final\\src\\main\\webapp\\resources\\images\\";
+        String path = "E:\\Senior Project\\senior_project\\JV24_Spring_Project_Final\\src\\main\\webapp\\resources\\images";
+        //String path = "http://node194476-cinemaxxi.jelastic.servint.net/home/src/main/webapp/resources/images/";
         File uploadRootDir = new File(path);
         String imagesupload = fileUpload.getOriginalFilename();
         if (imagesupload != null) {
@@ -124,9 +122,9 @@ public class AdminController {
         model.addAttribute("nameAdmin", ((UserEntity) principal).getFullName());
         MovieEntity movie = movieService.saveMovie(movies);
         if (movie != null && movie.getId() > 0) {
-            return "redirect:/admin/home?message=Add new movie success";
+            return "redirect:/admin/home?message=Ban da them phim thanh cong!";
         } else {
-            return "redirect:/admin/add-movie?message= Add new fail";
+            return "redirect:/admin/add-movie?message=Ban da them phim that bai!";
         }
     }
 
@@ -143,66 +141,52 @@ public class AdminController {
 
     @RequestMapping(value = "/update-movie", method = RequestMethod.POST)
     public String updateMovie(Model model, @ModelAttribute(value = "movies") MovieEntity movies, HttpSession session) {
-//        SimpleDateFormat dtf2 = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat dtf3 = new SimpleDateFormat("HH:mm");
-//        Date dateFirm = dtf2.parse(dateStartShowing);
-//        Date timeFirm = dtf3.parse(time);
-//        movies.setDateStartShowing(dateFirm);
-//        movies.setTime(timeFirm);
         MovieEntity movie = movieService.saveMovie(movies);
         if (movie != null && movie.getId() > 0) {
-            return "redirect:/admin/home?message= Edit success";
+            return "redirect:/admin/home?message=Ban da cap nhat phim thanh cong!";
         } else {
-            return "redirect:/admin/edit-movie?message= Edit fail";
+            return "redirect:/admin/edit-movie?message=Ban da cap nhat phim that bai!";
         }
     }
 
     @RequestMapping(value = "/searchMovie", method = RequestMethod.POST)
-    public String searchCriteria(Model model, @ModelAttribute(value = "searchText") String searchText, HttpSession session) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("nameAdmin", ((UserEntity) principal).getFullName());
-        List<MovieEntity> lstMovie = movieService.searchNameMovie(searchText);
-        model.addAttribute("lstMovie", lstMovie);
-        model.addAttribute("lstCountryMovie", movieService.getCountry());
+    public String searchCriteria(Model model, @ModelAttribute(value = "searchText") String searchText,
+            @RequestParam(value = "page", defaultValue = "1", required = false) int page, HttpSession session) {
+        model.addAttribute("lstMovie", movieService.searchNameMovie(searchText, new PageRequest(page - 1, 7)));
         model.addAttribute("lstCategoryMovie", movieService.getCategoryMovie());
-        model.addAttribute("message", "Find all ");
-        return "admin/result";
+        model.addAttribute("page", page);
+        return "admin/home";
     }
 
     @RequestMapping(value = "/deleteMovie/{id}")
     public String deleteMovie(Model model, @PathVariable(value = "id") int id) {
         if (movieService.checkExistMovie(id)) {
             if (movieService.deleteMovie(id)) {
-                return "redirect:/admin/home?message= delete fail";
+                return "redirect:/admin/home?message=Ban da xoa phim that bai!";
             } else {
-                return "redirect:/admin/home?message= delete success";
+                return "redirect:/admin/home?message=Ban da xoa phim thanh cong!";
 
             }
         } else {
-            return "redirect:/admin/home?message= movie can't on the list";
+            return "redirect:/admin/home?message=Ban khong the xoa phim!";
         }
     }
 
     @RequestMapping(value = "/searchUser", method = RequestMethod.POST)
     public String searchUser(Model model, @ModelAttribute(value = "searchText") String searchText, HttpSession session) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("nameAdmin", ((UserEntity) principal).getFullName());
         List<UserEntity> lstUser = userService.searchUser(searchText);
         model.addAttribute("lstUser", lstUser);
-        model.addAttribute("message", "Find all ");
-        return "admin/result";
+        return "admin/user";
     }
 
-    @RequestMapping(value = "/categoryMovie", method = RequestMethod.POST)
-    public String categoryMovie(Model model, @ModelAttribute(value = "categoryMovie.id") int categoryMovie) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("nameAdmin", ((UserEntity) principal).getFullName());
-        List<MovieEntity> lstMovie = movieService.categoryMovie(categoryMovie);
-        model.addAttribute("lstMovie", lstMovie);
-        model.addAttribute("message", "Find all ");
-        return "admin/result";
-    }
-
+//    @RequestMapping(value = "/categoryMovie", method = RequestMethod.POST)
+//    public String categoryMovie(Model model, @ModelAttribute(value = "categoryMovie.id") int categoryMovie, @RequestParam(value = "page", defaultValue = "1", required = false) int page) {
+//        List<MovieEntity> lstMovie = movieService.categoryMovie(categoryMovie, new PageRequest(page - 1, 7));        
+//        model.addAttribute("lstMovie", lstMovie);
+//        model.addAttribute("lstCategoryMovie", movieService.getCategoryMovie());
+//        model.addAttribute("page", page);
+//        return "admin/home";
+//    }
     @RequestMapping(value = "/add-user")
     public String viewFormUser(Model model) {
         model.addAttribute("genders", Gender.values());
@@ -213,18 +197,23 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/save-user", method = RequestMethod.POST)
-    public String saveUser(Model model, @ModelAttribute(value = "user") UserEntity user, HttpServletRequest request) {
+    public String saveUser(Model model, @ModelAttribute(value = "user") UserEntity user, HttpServletRequest request, @RequestParam(value = "role") int roleId) {
+        if (userService.findByEmail(user.getEmail()) != null) {
+            model.addAttribute("genders", Gender.values());
+            model.addAttribute("message", "Email của bạn đã tồn tại. Xin vui lòng nhập lại!");
+            return "admin/user-form";
+        }
         List<UserRoleEntity> lstRole = new ArrayList<>();
-        lstRole.add(userService.findByRole(Role.ROLE_USER));
+        lstRole.add(userService.findByRoleId(roleId));
         user.setUserRole(lstRole);
         user.setPassword(PasswordUtil.hashPassword(user.getPassword()));
         user.setActive(Boolean.TRUE);
         UserEntity users = userService.saveUser(user);
 
         if (users != null && users.getId() > 0) {
-            return "redirect:/admin/user?message=add new success";
+            return "redirect:/admin/user?message=Ban da them tai khoan thanh cong!";
         } else {
-            return "redirect:/admin/add-user?message= Add new fail";
+            return "redirect:/admin/add-user?message=Ban da them tai khoan that bai!";
         }
     }
 
@@ -246,12 +235,12 @@ public class AdminController {
         List<UserRoleEntity> lstRole = new ArrayList<>();
         lstRole.add(userService.findByRole(Role.ROLE_USER));
         user.setUserRole(lstRole);
-//        user.setPassword(PasswordUtil.hashPassword(user.getPassword()));
+        user.setPassword(PasswordUtil.hashPassword(user.getPassword()));
         user.setActive(Boolean.TRUE);
         UserEntity users = userService.saveUser(user);
 
         if (users != null && users.getId() > 0) {
-            return "redirect:/admin/user?message=edit success";
+            return "redirect:/admin/user?message=Ban da cap nhat tai khoan thanh cong!";
         } else {
             return "redirect:/admin/add-movie";
         }
@@ -288,7 +277,6 @@ public class AdminController {
 
     @RequestMapping(value = "/downloadExcel")
     public String downloadExcel(Model model) {
-       
 
         List<BookTicketEntity> lstticket = ticketService.getBookTicket();
         List<TicketDetailEntity> lstTicketDetail = ticketService.getTicketDetail();
@@ -327,38 +315,36 @@ public class AdminController {
 
     }
 
-    @RequestMapping(value = {"/searchmovieschedule"}, method = RequestMethod.POST)
-    public String searchMovieSchedule(Model model, @ModelAttribute(value = "searchText") String searchText) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("nameAdmin", ((UserEntity) principal).getFullName());
-        List<MovieEntity> lstMovie = movieService.searchNameMovie(searchText);
-        List<MovieScheduleEntity> lstMovieSch = (List<MovieScheduleEntity>) ticketService.getMovieSchedule();
-        List<MovieScheduleEntity> lstSearch = new ArrayList<>();
-        for (MovieEntity movieEntity : lstMovie) {
-            for (MovieScheduleEntity movieScheduleEntity : lstMovieSch) {
-                if (movieEntity.getId() == movieScheduleEntity.getMovie().getId()) {
-                    lstSearch.add(movieScheduleEntity);
-                }
-            }
-        }
-//        model.addAttribute("message", "Find all ");
-
-        model.addAttribute("lstMovieSchedule", lstSearch);
-        return "admin/result";
-
-    }
-
+//    @RequestMapping(value = {"/searchmovieschedule"}, method = RequestMethod.POST)
+//    public String searchMovieSchedule(Model model, @ModelAttribute(value = "searchText") String searchText) {
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("nameAdmin", ((UserEntity) principal).getFullName());
+//        List<MovieEntity> lstMovie = movieService.searchNameMovie(searchText);
+//        List<MovieScheduleEntity> lstMovieSch = (List<MovieScheduleEntity>) ticketService.getMovieSchedule();
+//        List<MovieScheduleEntity> lstSearch = new ArrayList<>();
+//        for (MovieEntity movieEntity : lstMovie) {
+//            for (MovieScheduleEntity movieScheduleEntity : lstMovieSch) {
+//                if (movieEntity.getId() == movieScheduleEntity.getMovie().getId()) {
+//                    lstSearch.add(movieScheduleEntity);
+//                }
+//            }
+//        }
+//
+//        model.addAttribute("lstMovieSchedule", lstSearch);
+//        return "admin/result";
+//
+//    }
     @RequestMapping(value = "/deleteMovieSchedule/{id}")
     public String deleteMovieSchedule(Model model, @PathVariable(value = "id") int id) {
         if (ticketService.checkExistMovieSchedule(id)) {
             if (ticketService.deleteMovieSchedule(id)) {
-                return "redirect:/admin/movieschedule?message= delete fail";
+                return "redirect:/admin/movieschedule?message=Ban da xoa lich chieu phim that bai!";
             } else {
-                return "redirect:/admin/movieschedule?message= delete success";
+                return "redirect:/admin/movieschedule?message=Ban da xoa lich chieu phim thanh cong!";
 
             }
         } else {
-            return "redirect:/admin/movieschedule?message= movie can't on the list";
+            return "redirect:/admin/movieschedule?message=Ban khong the xoa lich chieu phim!";
         }
     }
 
@@ -377,9 +363,9 @@ public class AdminController {
         model.addAttribute("nameAdmin", ((UserEntity) principal).getFullName());
         MovieScheduleEntity movie = ticketService.saveMovieSchedule(movieSchedule);
         if (movie != null && movie.getId() > 0) {
-            return "redirect:/admin/movieschedule?message=add new success";
+            return "redirect:/admin/movieschedule?message=Ban da them lich chieu phim thanh cong!";
         } else {
-            return "redirect:/admin/add-movieSchedule?message=add new fail. Again";
+            return "redirect:/admin/add-movieSchedule?message=Ban da them lich chieu phim that bai!";
         }
     }
 
@@ -400,23 +386,23 @@ public class AdminController {
         model.addAttribute("nameAdmin", ((UserEntity) principal).getFullName());
         MovieScheduleEntity movie = ticketService.saveMovieSchedule(movieSchedule);
         if (movie != null && movie.getId() > 0) {
-            return "redirect:/admin/movieschedule?message=edit success";
+            return "redirect:/admin/movieschedule?message=Ban da cap nhat lich chieu phim thanh cong!";
         } else {
-            return "redirect:/admin/edit-movieSchedule?message=edit fail. Again";
+            return "redirect:/admin/edit-movieSchedule?message=Ban da xoa lich chieu phim that bai!";
         }
     }
-    
+
     @RequestMapping(value = "/delete-user/{id}")
     public String deleteUser(Model model, @PathVariable(value = "id") int id) {
         if (userService.checkExistUser(id)) {
             if (userService.deleteUser(id)) {
-                return "redirect:/admin/user?message= delete fail";
+                return "redirect:/admin/user?message=Ban da xoa lich chieu phim that bai!";
             } else {
-                return "redirect:/admin/user?message= delete success";
+                return "redirect:/admin/user?message=Ban da xoa lich chieu phim thanh cong!";
 
             }
         } else {
-            return "redirect:/admin/user?message= movie can't on the list";
+            return "redirect:/admin/user?message=Ban khong the xoa lich chieu phim.";
         }
     }
 }

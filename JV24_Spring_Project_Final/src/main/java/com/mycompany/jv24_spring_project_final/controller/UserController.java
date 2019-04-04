@@ -41,7 +41,7 @@ public class UserController {
     @RequestMapping(value = {"login"}, method = RequestMethod.GET)
     public String login(Model model, @RequestParam(name = "error", required = false) String error) {
         if (error != null && !error.isEmpty() && error.equals("loginFail")) {
-            model.addAttribute("message", "Email or password incorrect!!!");
+            model.addAttribute("message", "Email hoặc mật khẩu của bạn chưa chính xác!");
         }
         return "login";
     }
@@ -55,7 +55,7 @@ public class UserController {
     @RequestMapping(value = "/register-handle", method = RequestMethod.POST)
     public String registerHandle(Model model, @ModelAttribute(value = "user") UserEntity user, @ModelAttribute(value = "password") String password) {
         if (userService.findByEmail(user.getEmail())!= null) {
-            model.addAttribute("message", "Email have exists. Please enter again!!!");
+            model.addAttribute("message", "Email của bạn đã tồn tại. Xin vui lòng nhập lại!");
             return "register";
         } else {
             List<UserRoleEntity> lstRole = new ArrayList<>();
@@ -76,7 +76,7 @@ public class UserController {
                 mailSender.send(mail);
                 return "login";
             } else {
-                model.addAttribute("message", "Register not success!!!");
+                model.addAttribute("message", "Bạn chưa đăng kí tài khoản thành công.");
                 return "register";
             }
         }

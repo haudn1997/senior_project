@@ -1,8 +1,3 @@
-<%-- 
-    Document   : home1
-    Created on : Sep 23, 2018, 8:18:22 PM
-    Author     : PC
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.jv24_spring_project_final.service;
 
 import com.mycompany.jv24_spring_project_final.common.PasswordUtil;
@@ -47,9 +43,15 @@ public class UserService {
     public List<UserEntity> searchUser( String searchtext){  
         return userRepository.findByFullNameLike("%"+searchtext+"%");
     }
+    
     public UserRoleEntity findByRole(Role role){
         return userRoleRepository.findByRole(role);
     }
+    
+    public UserRoleEntity findByRoleId(int roleId) {
+        return userRoleRepository.findById(roleId);
+    }
+    
     public UserEntity findByIdUser(int id){
         return userRepository.findOne(id);
     }
